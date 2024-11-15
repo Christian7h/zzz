@@ -1,0 +1,80 @@
+---
+interface Props {
+  name: string;
+  age: number;
+  description: string;
+  height: string;
+  image: string;
+  rank: string;
+  type: string;
+}
+
+const { name, age, description, height, image, rank, type } = Astro.props;
+---
+
+<div class="character-card">
+  <img src={image} alt={name} class="character-image" />
+  <div class="character-info">
+    <h2>{name}</h2>
+    <p class="rank">Rank: {rank}</p>
+    <p class="type">Type: {type}</p>
+    <div class="details">
+      <p>Age: {age}</p>
+      <p>Height: {height}</p>
+    </div>
+    <p class="description">{description}</p>
+  </div>
+</div>
+
+<style>
+  .character-card {
+    background: #23262d;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .character-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .character-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .character-info {
+    padding: 1.5rem;
+    color: white;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .rank, .type {
+    font-weight: bold;
+    color: rgb(var(--accent-light));
+    margin: 0.25rem 0;
+  }
+
+  .details {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #a1a1aa;
+  }
+
+  .description {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+</style>
