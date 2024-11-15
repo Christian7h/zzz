@@ -10,10 +10,13 @@ interface Props {
 }
 
 const { name, age, description, height, image, rank, type } = Astro.props;
+
+// Cortar la URL de la imagen en caso de que tenga parámetros adicionales
+const imageUrl = image.split('/revision')[0];
 ---
 
 <div class="character-card">
-  <img src={image} alt={name} class="character-image" />
+  <img src={imageUrl} alt={name} class="character-image" />
   <div class="character-info">
     <h2>{name}</h2>
     <p class="rank">Rank: {rank}</p>
@@ -39,11 +42,16 @@ const { name, age, description, height, image, rank, type } = Astro.props;
     transform: translateY(-5px);
   }
 
+  /* Reducir la altura de la imagen al 50% */
   .character-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
+  width: auto;  /* Corregí el error con el doble '%' */
+  height: 300PX;
+  object-fit: cover;
+  display: block;  /* Esto hace que la imagen sea un bloque, permitiendo centrarse */
+  margin-left: auto;  /* Centra la imagen horizontalmente */
+  margin-right: auto; /* Centra la imagen horizontalmente */
+}
+
 
   .character-info {
     padding: 1.5rem;
